@@ -1,0 +1,60 @@
+
+Django Coding Challenge: Multi-Organizational Management System with Role Management
+
+Objective:
+Build a Django web application to support multiple organizations, each with its own users and role-based management. The system should allow:
+1. A Main Organization (e.g., "Admin Organization") to oversee and manage sub-organizations.
+2. Each sub-organization to have its own users and roles.
+3. Only the organization admin can assign roles to users within their own organization.
+
+Requirements:
+
+1. Models:
+   - Organization: Represents an organization with fields like name, address, and is_main (to identify the main organization).
+   - Custom User Model: Extend Django’s AbstractUser to include fields such as organization (ForeignKey to the Organization model) to identify which organization the user belongs to.
+   - Role Model: Define a Role model (e.g., "Admin," "Editor," "Viewer") that can be assigned to users by the organization admin.
+
+2. Views:
+   - Organization CRUD: Allow the main organization’s admin to create, update, and delete sub-organizations.
+   - User Management within an Organization:
+      - Allow organization admins to create, view, update, and delete users within their own organization.
+      - Allow organization admins to assign roles to users within their organization only.
+   - Role Assignment:
+      - Implement a view to assign roles to users, accessible only by the organization’s admin.
+      - Ensure users are restricted to seeing and modifying users within their own organization.
+
+3. Role Assignment Logic:
+   - Roles (Admin, Editor, Viewer) that dictate a user’s general access level within the organization.
+   - The organization admin can assign roles to each user, limiting each user's access level based on the role.
+
+Functional Specifications:
+
+1. Organizational Management:
+   - Main Organization: A superuser from the main organization can create sub-organizations.
+   - Sub-Organization: Each organization should have its own set of users, and each user should belong to only one organization.
+
+2. Custom User Setup:
+   - Extend Django's user model to include fields like organization and role.
+   - Users should see information specific to their organization and role when they log in.
+
+3. Role Assignment Logic:
+   - Provide a simple form for the organization admin to assign roles to users.
+   - Ensure the application restricts access so that only the main organization’s admin can create sub-organizations, and only the organization’s admin can assign roles within their organization.
+
+Deliverables:
+
+1. Code:
+   - Django project setup with models, views, templates, and URL configurations.
+   - Custom user model with a connection to the Organization and Role models.
+   - Logic for user role assignment based on the organization.
+   - A migration file for all database schema changes.
+
+2. Documentation:
+   - Brief documentation outlining the project structure, customizations, and assumptions made.
+   - Instructions on setting up and running the project locally.
+
+Evaluation Criteria:
+- Correctness: The solution meets all specified requirements.
+- Code Structure: Code is modular, well-organized, and follows Django best practices.
+- Security: Ensuring organization data is protected and users are limited to managing only their organization's users and roles.
+- Clarity: Clear, concise documentation and comments within the code to explain key parts of the logic.
